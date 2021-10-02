@@ -94,7 +94,7 @@ class App extends React.Component {
         return (
             <div className="w-full h-screen">
 
-                <Sidebar Visible={ this.state.menuVisible } />
+                <Sidebar Visible={ this.state.menuVisible } ToggleMenu={ this.ToggleMenu } />
 
                 <Navbar ToggleMenu={ this.ToggleMenu } />
 
