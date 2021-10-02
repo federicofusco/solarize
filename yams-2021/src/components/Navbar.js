@@ -1,7 +1,19 @@
+// Imports components
+import Logo from "./Logo";
+
+/**
+ * Displays a navbar at the top of the screen
+ * 
+ * @returns A Navbar
+ * @example
+ * import Navbar from "./Navbar";
+ * 
+ * <Navbar />
+ */
 const Navbar = () => {
 
     return (
-        <div className="w-full fixed h-16 shadow-md flex justify-between px-4">
+        <div className="w-full fixed h-20 shadow-md flex justify-between px-6">
 
             {/* Hamburger Icon */}
             <div className="my-auto">
@@ -9,9 +21,14 @@ const Navbar = () => {
             </div>
 
             {/* App Name */}
-            <h1 className="font-poppins my-auto font-bold text-4xl">Name</h1>
+            <h1 className="font-poppins my-auto font-bold text-4xl">Solarize</h1>
 
-            <div></div>
+            {/* Logo */}
+            {/* Logo provided by Logoipsum */}
+            {/* https://www.logoipsum.com */}
+            <div className="my-auto">
+                <Logo />
+            </div>
         </div>
     );
 

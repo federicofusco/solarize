@@ -1,13 +1,11 @@
 // Imports React
 import React from "react";
 
-// Imports React Router
-import { Link } from "react-router-dom";
-
 // Imports components
 import Navbar from "./../components/Navbar";
 
-// Imports utils
+// Imports dependencies
+import ApiHandler from "../utils/ApiHandler";
 
 // Defines the page
 class App extends React.Component {
@@ -26,11 +24,21 @@ class App extends React.Component {
 
     }
 
+    componentDidMount () {
+
+        ApiHandler.FetchAllSkySurfaceShortwaveDownwardIrradiance ()
+        .then ( ( result ) => {
+            console.log(result.data);
+        })
+
+    }
+
     render () {
 
         return (
             <div className="w-full h-screen">
                 <Navbar />
+
             </div>
         )
 
