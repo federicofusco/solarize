@@ -87,8 +87,8 @@ class App extends React.Component {
                 <Navbar />
 
                 { this.state.solarIrradianceData &&
-                <div className="w-full px-8 my-16">
-                    <div className="w-full px-4 pb-4 pt-2 bg-gray-100 bg-opacity-50 rounded-lg">
+                <div className="w-full px-4 my-8">
+                    <div className="w-full p-2 bg-gray-100 bg-opacity-50 rounded-lg">
                         <Line data={() => { 
 
                             var labels = [];
