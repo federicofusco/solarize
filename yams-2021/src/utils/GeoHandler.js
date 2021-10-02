@@ -22,6 +22,8 @@ const GeoHandler = {
 
             }, ( error ) => {
 
+                console.log(error);
+
                 ConsoleHandler.Error ({
                     code: "geo/coords-not-fetched",
                     message: "Failed to fetch user's location\nUser probably didn't give permission"
