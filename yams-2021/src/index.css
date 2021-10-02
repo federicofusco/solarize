@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.menuLink {
+    @apply font-poppins mb-3 block text-2xl text-green-500 font-semibold;
+}

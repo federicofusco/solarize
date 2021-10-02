@@ -2,6 +2,7 @@
 import React from "react";
 
 // Imports components
+import Sidebar from "../components/Sidebar";
 import Navbar from "./../components/Navbar";
 
 // Imports utils
@@ -83,6 +84,8 @@ class App extends React.Component {
 
         return (
             <div className="w-full h-screen">
+
+                <Sidebar />
 
                 <Navbar />
 
