@@ -19,12 +19,12 @@ class App extends React.Component {
         super ( props );
 
         // Binds  method
-
-        // Creates refs
+        this.ToggleMenu = this.ToggleMenu.bind ( this );
 
         // Sets the state
         this.state = {
-            solarIrradianceData: undefined
+            solarIrradianceData: undefined,
+            menuVisible: false
         }
 
     }
@@ -80,14 +80,23 @@ class App extends React.Component {
 
     }
 
+    ToggleMenu () {
+
+        // Updates the state
+        this.setState ({
+            menuVisible: !this.state.menuVisible
+        });
+
+    }
+
     render () {
 
         return (
             <div className="w-full h-screen">
 
-                <Sidebar />
+                <Sidebar Visible={ this.state.menuVisible } />
 
-                <Navbar />
+                <Navbar ToggleMenu={ this.ToggleMenu } />
 
                 { this.state.solarIrradianceData &&
                 <div className="w-full px-4 my-8">
