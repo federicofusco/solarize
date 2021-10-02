@@ -28,7 +28,7 @@ const GeoHandler = {
                 }, reject);
 
             }, {
-                enableHighAccuracy: true
+                enableHighAccuracy: false
             });
 
         });
