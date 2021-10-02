@@ -111,7 +111,7 @@ class Frost extends React.Component {
                             return {
                                 labels: labels,
                                 datasets: [{
-                                    label: 'Frost',
+                                    label: 'Frost (C)',
                                     data: this.state.frostData,
                                     fill: false,
                                     backgroundColor: 'rgb(255, 99, 132)',

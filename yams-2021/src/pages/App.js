@@ -111,7 +111,7 @@ class App extends React.Component {
                             return {
                                 labels: labels,
                                 datasets: [{
-                                    label: 'Solar Irradiance',
+                                    label: 'Solar Irradiance (kWh / m²)',
                                     data: this.state.solarIrradianceData,
                                     fill: false,
                                     backgroundColor: 'rgb(255, 99, 132)',

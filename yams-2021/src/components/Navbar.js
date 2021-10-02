@@ -1,6 +1,9 @@
 // Imports components
 import Logo from "./Logo";
 
+// Imports React Router components
+import { Link } from "react-router-dom";
+
 /**
  * Displays a navbar at the top of the screen
  * 
@@ -22,14 +25,19 @@ const Navbar = ({ ToggleMenu }) => {
             </div>
 
             {/* App Name */}
-            <h1 className="font-poppins my-auto font-bold text-4xl">Solarize</h1>
+            <Link className="my-auto flex justify-center" to="/">
+                {/* Logo */}
+                {/* Logo provided by Logoipsum */}
+                {/* https://www.logoipsum.com */}
+                <div className="my-auto mr-2">
+                    <Logo />
+                </div>
 
-            {/* Logo */}
-            {/* Logo provided by Logoipsum */}
-            {/* https://www.logoipsum.com */}
-            <div className="my-auto">
-                <Logo />
-            </div>
+                <h1 className="font-poppins font-bold text-4xl">Solarize</h1>
+            </Link>
+
+            <div />
+
         </div>
     );
 

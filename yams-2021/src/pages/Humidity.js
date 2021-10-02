@@ -111,7 +111,7 @@ class Humidity extends React.Component {
                             return {
                                 labels: labels,
                                 datasets: [{
-                                    label: 'Humidity',
+                                    label: 'Humidity (g / kg)',
                                     data: this.state.humidityData,
                                     fill: false,
                                     backgroundColor: 'rgb(255, 99, 132)',

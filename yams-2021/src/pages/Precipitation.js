@@ -111,7 +111,7 @@ class Precipitation extends React.Component {
                             return {
                                 labels: labels,
                                 datasets: [{
-                                    label: 'Precipitation',
+                                    label: 'Precipitation (mm)',
                                     data: this.state.precipitationData,
                                     fill: false,
                                     backgroundColor: 'rgb(255, 99, 132)',

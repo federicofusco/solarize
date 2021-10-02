@@ -111,7 +111,7 @@ class Temperature extends React.Component {
                             return {
                                 labels: labels,
                                 datasets: [{
-                                    label: 'Temperature',
+                                    label: 'Temperature (C)',
                                     data: this.state.temperatureData,
                                     fill: false,
                                     backgroundColor: 'rgb(255, 99, 132)',

@@ -111,7 +111,7 @@ class Windspeed extends React.Component {
                             return {
                                 labels: labels,
                                 datasets: [{
-                                    label: 'Wind Speed',
+                                    label: 'Wind Speed (m / s)',
                                     data: this.state.windSpeedData,
                                     fill: false,
                                     backgroundColor: 'rgb(255, 99, 132)',
