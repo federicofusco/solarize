@@ -4,8 +4,11 @@ import React from "react";
 // Imports components
 import Navbar from "./../components/Navbar";
 
-// Imports dependencies
+// Imports utils
 import ApiHandler from "../utils/ApiHandler";
+
+// Imports dependencies
+import { Line } from "react-chartjs-2";
 
 // Defines the page
 class App extends React.Component {
@@ -20,6 +23,7 @@ class App extends React.Component {
 
         // Sets the state
         this.state = {
+            solarIrradianceData: undefined
         }
 
     }
@@ -37,7 +41,7 @@ class App extends React.Component {
             // Then valculates the average for each week
             for ( var x = 6; x < rawData.length; x++ ) {
 
-                if ( rawData[x].includes ( "\n" ) ) {
+                if ( rawData[x].includes ( "\n" ) && rawData[x].split ( "\n" )[0] > 0 ) {
 
                     if ( temp.length < 7 ) {
                         
@@ -67,7 +71,9 @@ class App extends React.Component {
 
             }
 
-            console.log( values );
+            this.setState ({
+                solarIrradianceData: values
+            });
 
         });
 
@@ -77,8 +83,47 @@ class App extends React.Component {
 
         return (
             <div className="w-full h-screen">
+
                 <Navbar />
 
+                { this.state.solarIrradianceData &&
+                <div className="w-full px-8 my-16">
+                    <div className="w-full px-4 pb-4 pt-2 bg-gray-100 bg-opacity-50 rounded-lg">
+                        <Line data={() => { 
+
+                            var labels = [];
+                            for ( var x = 0; x < this.state.solarIrradianceData.length; x++ ) {
+                                labels.push ( ( x + 1 ).toString () );
+                            }
+
+                            return {
+                                labels: labels,
+                                datasets: [{
+                                    label: 'Solar Irradiance',
+                                    data: this.state.solarIrradianceData,
+                                    fill: false,
+                                    backgroundColor: 'rgb(255, 99, 132)',
+                                    borderColor: 'rgba(255, 99, 132, 0.2)'
+                                }]
+                            }
+                        }} options={{
+                            responsive: true,
+                            scales: {
+                                yAxes: [{
+                                    beginAtZero: true,
+                                    ticks: {
+                                        callback: ( value, index ) => {
+                                            console.log(1)
+                                            return value + "@";
+                                        }
+                                    }
+                                }]
+                            }
+                        }} />
+                    </div>
+                </div>
+            }
+                
             </div>
         )
 

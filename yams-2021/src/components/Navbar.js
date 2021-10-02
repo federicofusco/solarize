@@ -13,7 +13,7 @@ import Logo from "./Logo";
 const Navbar = () => {
 
     return (
-        <div className="w-full fixed h-20 shadow-md flex justify-between px-6">
+        <div className="w-full z-50 h-20 shadow-md flex justify-between px-6">
 
             {/* Hamburger Icon */}
             <div className="my-auto">
