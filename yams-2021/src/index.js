@@ -19,7 +19,7 @@ import Precipitation from './pages/Precipitation';
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <Switch>
+      <Switch> 
         <Route path="/" exact component={ App } />
         <Route path="/windspeed" component={ Windspeed } />
         <Route path="/temperature" component={ Temperature } />

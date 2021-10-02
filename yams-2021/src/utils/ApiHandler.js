@@ -1,6 +1,3 @@
-// Imports dependencies
-import Papa from "papaparse";
-
 // Imports utils
 import ConsoleHandler from "./ConsoleHandler";
 import GeoHandler from "./GeoHandler";
@@ -62,30 +59,15 @@ const ApiHandler = {
                     // Fetches the CSV file associated with those coordinates
                     // Passes through a CORS Proxy due to the fact that the API does not send 
                     // The correct headers
-                    fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${ parameters.toString () }&community=RE&longitude=${ result.data.coords.longitude}&latitude=${ result.data.coords.latitude }&start=${ start || `${ year - 1 }${ month }${ day }` }&end=${ end || `${ year }${ month }${ day }` }&format=CSV` )
+                    fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${ parameters.toString () }&community=RE&longitude=${ result.data.coords.longitude}&latitude=${ result.data.coords.latitude }&start=${ start || `${ year - 1 }${ month }${ day }` }&end=${ end || `${ year }${ month }${ day }` }&format=JSON` )
                     .then ( ( response ) => response.text () )
-                    .then ( ( csvData ) => {
+                    .then ( ( data ) => {
 
-                        // Parses the CSV data into JSON
-                        const data = Papa.parse ( csvData, {});
-
-                        if ( data.errors.length > 0 ) {
-
-                            ConsoleHandler.Error ({
-                                code: "api/parse-failed",
-                                message: "Failed to parse response into JSON"
-                            }, reject);
-
-                        } else {
-
-                            ConsoleHandler.Info ({
-                                code: "api/fetched-successfully",
-                                message: "Successfully fetched and parsed data",
-                                data: data
-                            }, resolve);
-
-                        }
-
+                        ConsoleHandler.Info ({
+                            code: "api/fetched-successfully",
+                            message: "Successfully fetched and parsed data",
+                            data: data
+                        }, resolve);
 
                     });
 
@@ -104,30 +86,15 @@ const ApiHandler = {
                 // Fetches the CSV file associated with those coordinates
                 // Passes through a CORS Proxy due to the fact that the API does not send 
                 // The correct headers
-                fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${ parameters.toString () }&community=RE&longitude=${ longitude}&latitude=${ latitude }&start=20210101&end=20210107&format=CSV` )
+                fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${ parameters.toString () }&community=RE&longitude=${ longitude}&latitude=${ latitude }&start=20210101&end=20210107&format=JSON` )
                 .then ( ( response ) => response.text () )
-                .then ( ( csvData ) => {
+                .then ( ( data ) => {
 
-                    // Parses the CSV data into JSON
-                    const data = Papa.parse ( csvData, {});
-
-                    if ( data.errors.length > 0 ) {
-
-                        ConsoleHandler.Error ({
-                            code: "api/parse-failed",
-                            message: "Failed to parse response into JSON"
-                        }, reject);
-
-                    } else {
-
-                        ConsoleHandler.Info ({
-                            code: "api/fetched-successfully",
-                            message: "Successfully fetched and parsed data",
-                            data: data
-                        }, resolve);
-
-                    }
-
+                    ConsoleHandler.Info ({
+                        code: "api/fetched-successfully",
+                        message: "Successfully fetched and parsed data",
+                        data: data
+                    }, resolve);
 
                 });
 

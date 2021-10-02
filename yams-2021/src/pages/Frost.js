@@ -31,40 +31,37 @@ class Frost extends React.Component {
 
     componentDidMount () {
 
-        ApiHandler.FetchAPIData (["T2MDEW"])
+        const parameter = "T2MDEW";
+
+        ApiHandler.FetchAPIData ([parameter])
         .then ( async ( result ) => {
 
-            var rawData = result.data.data[9];
-            var temp = [];
+            const data = Object.values ( JSON.parse ( result.data ).properties.parameter[parameter] );
             var values = [];
+            var temp = [];
+            var average = 0;
 
-            // Loops through the raw data and removes all the dates
-            // Then valculates the average for each week
-            for ( var x = 6; x < rawData.length; x++ ) {
+            // Loops the data and calculates each weeks average
+            for ( var x = 0; x < data.length; x++ ) {
 
-                if ( rawData[x].includes ( "\n" ) && rawData[x].split ( "\n" )[0] > 0 ) {
+                // Verifies that the data has been properly indexed
+                if ( data[x] > 0 ) {
 
                     if ( temp.length < 7 ) {
-                        
-                        temp.push ( Number ( rawData[x].split ( "\n" )[0] ) );
-        
+                        temp.push ( data[x] );
                     } else {
 
-
-                        // Calculates the average value of each day
-                        var average = 0;
+                        // Calculates the average
                         for ( var y = 0; y < temp.length; y++ ) {
 
                             average += temp[y];
 
                         }
-
                         average /= temp.length + 1;
 
                         values.push ( average );
-
                         temp = [];
-                        temp.push ( Number ( rawData[x].split ( "\n" )[0] ) );
+                        temp.push ( data[x] );
 
                     }
 
