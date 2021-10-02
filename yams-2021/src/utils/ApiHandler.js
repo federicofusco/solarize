@@ -123,6 +123,98 @@ const ApiHandler = {
             }
 
         });
+    },
+
+    FetchWindspeed10Meters: ( longitude, latitude, start, end ) => {
+        return new Promise ( ( resolve, reject ) => {
+
+            // Calculates the date
+            const date = new Date ();
+            const year = date.getUTCFullYear ();
+            const month = ( date.getUTCMonth () + 1 ).toString ().length === 1 ? `0${ date.getUTCMonth () + 1 }` : `${ date.getUTCMonth () + 1 }`;
+            const day = date.getUTCDate ().toString ().length === 1 ? `0${ date.getUTCDate () }` : `${ date.getUTCDate () }`;
+
+            if ( !longitude || !latitude ) {
+
+                // Fetches the user's current position
+                GeoHandler.GetPosition ()
+                .then ( ( result ) => {
+
+                    // Fetches the CSV file associated with those coordinates
+                    // Passes through a CORS Proxy due to the fact that the API does not send 
+                    // The correct headers
+                    fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WS10M&community=RE&longitude=${ result.data.coords.longitude}&latitude=${ result.data.coords.latitude }&start=${ start || `${ year - 1 }${ month }${ day }` }&end=${ end || `${ year }${ month }${ day }` }&format=CSV` )
+                    .then ( ( response ) => response.text () )
+                    .then ( ( csvData ) => {
+
+                        // Parses the CSV data into JSON
+                        const data = Papa.parse ( csvData, {});
+
+                        if ( data.errors.length > 0 ) {
+
+                            ConsoleHandler.Error ({
+                                code: "api/parse-failed",
+                                message: "Failed to parse response into JSON"
+                            }, reject);
+
+                        } else {
+
+                            ConsoleHandler.Info ({
+                                code: "api/fetched-successfully",
+                                message: "Successfully fetched and parsed data",
+                                data: data
+                            }, resolve);
+
+                        }
+
+
+                    });
+
+                })
+                .catch ( () => {
+
+                    ConsoleHandler.Error ({
+                        code: "api/fetch-failed",
+                        message: "Failed to fetch data due to inaccessible location data"
+                    }, reject);
+
+                });
+
+            } else {
+
+                // Fetches the CSV file associated with those coordinates
+                // Passes through a CORS Proxy due to the fact that the API does not send 
+                // The correct headers
+                fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WS10M&community=RE&longitude=${ longitude}&latitude=${ latitude }&start=20210101&end=20210107&format=CSV` )
+                .then ( ( response ) => response.text () )
+                .then ( ( csvData ) => {
+
+                    // Parses the CSV data into JSON
+                    const data = Papa.parse ( csvData, {});
+
+                    if ( data.errors.length > 0 ) {
+
+                        ConsoleHandler.Error ({
+                            code: "api/parse-failed",
+                            message: "Failed to parse response into JSON"
+                        }, reject);
+
+                    } else {
+
+                        ConsoleHandler.Info ({
+                            code: "api/fetched-successfully",
+                            message: "Successfully fetched and parsed data",
+                            data: data
+                        }, resolve);
+
+                    }
+
+
+                });
+
+            }
+
+        });
     }
 
 }

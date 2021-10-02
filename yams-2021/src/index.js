@@ -10,12 +10,14 @@ import './index.css';
 
 // Imports pages
 import App from "./pages/App";
+import Windspeed from "./pages/Windspeed";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Switch>
-        <Route path="/" component={ App } />
+        <Route path="/" exact component={ App } />
+        <Route path="/windspeed" component={ Windspeed } />
       </Switch>
     </Router>
   </React.StrictMode>,
