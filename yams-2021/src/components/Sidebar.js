@@ -17,7 +17,7 @@ const Sidebar = ({ Visible, ToggleMenu }) => {
             {/* Links */}
             <Link className="menuLink" to="/windspeed">Windspeed</Link>
             <Link className="menuLink" to="/temperature">Temperature</Link>
-            <Link className="menuLink" to="/dew">Dew / Frost</Link>
+            <Link className="menuLink" to="/frost">Dew / Frost</Link>
             <Link className="menuLink" to="/humidity">Humidity</Link>
             <Link className="menuLink" to="/precipitation">Precipitation</Link>
             <Link className="menuLink" to="/custom">Custom Chart</Link>

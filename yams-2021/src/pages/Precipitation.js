@@ -12,7 +12,7 @@ import ApiHandler from "../utils/ApiHandler";
 import { Line } from "react-chartjs-2";
 
 // Defines the page
-class App extends React.Component {
+class Precipitation extends React.Component {
 
     constructor ( props ) {
 
@@ -23,7 +23,7 @@ class App extends React.Component {
 
         // Sets the state
         this.state = {
-            solarIrradianceData: undefined,
+            precipitationData: undefined,
             menuVisible: false
         }
 
@@ -31,7 +31,7 @@ class App extends React.Component {
 
     componentDidMount () {
 
-        ApiHandler.FetchAPIData (["ALLSKY_SFC_SW_DWN"])
+        ApiHandler.FetchAPIData (["PRECTOTCORR"])
         .then ( async ( result ) => {
 
             var rawData = result.data.data[9];
@@ -73,7 +73,7 @@ class App extends React.Component {
             }
 
             this.setState ({
-                solarIrradianceData: values
+                precipitationData: values
             });
 
         });
@@ -98,21 +98,21 @@ class App extends React.Component {
 
                 <Navbar ToggleMenu={ this.ToggleMenu } />
 
-                { this.state.solarIrradianceData &&
+                { this.state.precipitationData &&
                 <div className="w-full px-4 my-8">
                     <div className="w-full p-2 bg-gray-100 bg-opacity-50 rounded-lg">
                         <Line data={() => { 
 
                             var labels = [];
-                            for ( var x = 0; x < this.state.solarIrradianceData.length; x++ ) {
+                            for ( var x = 0; x < this.state.precipitationData.length; x++ ) {
                                 labels.push ( ( x + 1 ).toString () );
                             }
 
                             return {
                                 labels: labels,
                                 datasets: [{
-                                    label: 'Solar Irradiance',
-                                    data: this.state.solarIrradianceData,
+                                    label: 'Precipitation',
+                                    data: this.state.precipitationData,
                                     fill: false,
                                     backgroundColor: 'rgb(255, 99, 132)',
                                     borderColor: 'rgba(255, 99, 132, 0.2)'
@@ -142,4 +142,4 @@ class App extends React.Component {
 
 }
 
-export default App;
+export default Precipitation;

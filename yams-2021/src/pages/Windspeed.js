@@ -31,7 +31,7 @@ class Windspeed extends React.Component {
 
     componentDidMount () {
 
-        ApiHandler.FetchWindspeed10Meters ()
+        ApiHandler.FetchAPIData (["WS10M"])
         .then ( async ( result ) => {
 
             var rawData = result.data.data[9];

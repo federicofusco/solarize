@@ -12,15 +12,16 @@ import GeoHandler from "./GeoHandler";
 const ApiHandler = {
 
     /**
-     * Fetches solar irradiance with the user's current position
+     * Fetches wind speed at 10 meters with the user's current position
      * 
+     * @param {array} parameters An array containing all of the parameters which should be requested (Max: 20 parameters)
      * @param {string} longitude The user's specified longitude
      * @param {string} latitude The user's specified latitude
      * @param {string} start The user's specified start date (Format "yearmonthday")
      * @param {string} end The user's specified end date (Format "yearmonthday")
      * @returns Promise
      * @example 
-     * ApiHandler.FetchAllSkySurfaceShortwaveDownwardIrradiance ()
+     * ApiHandler.FetchAPIData (["T2M"], 4.20, 6.90, null, null )
      * .then ( ( result ) => {
      * 
      *   // Fetched data
@@ -33,101 +34,19 @@ const ApiHandler = {
      * 
      * });
      */
-    FetchAllSkySurfaceShortwaveDownwardIrradiance: ( longitude, latitude, start, end ) => {
+     FetchAPIData: ( parameters, longitude, latitude, start, end ) => {
         return new Promise ( ( resolve, reject ) => {
 
-            // Calculates the date
-            const date = new Date ();
-            const year = date.getUTCFullYear ();
-            const month = ( date.getUTCMonth () + 1 ).toString ().length === 1 ? `0${ date.getUTCMonth () + 1 }` : `${ date.getUTCMonth () + 1 }`;
-            const day = date.getUTCDate ().toString ().length === 1 ? `0${ date.getUTCDate () }` : `${ date.getUTCDate () }`;
-
-            if ( !longitude || !latitude ) {
-
-                // Fetches the user's current position
-                GeoHandler.GetPosition ()
-                .then ( ( result ) => {
-
-                    // Fetches the CSV file associated with those coordinates
-                    // Passes through a CORS Proxy due to the fact that the API does not send 
-                    // The correct headers
-                    fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=${ result.data.coords.longitude}&latitude=${ result.data.coords.latitude }&start=${ start || `${ year - 1 }${ month }${ day }` }&end=${ end || `${ year }${ month }${ day }` }&format=CSV` )
-                    .then ( ( response ) => response.text () )
-                    .then ( ( csvData ) => {
-
-                        // Parses the CSV data into JSON
-                        const data = Papa.parse ( csvData, {});
-
-                        if ( data.errors.length > 0 ) {
-
-                            ConsoleHandler.Error ({
-                                code: "api/parse-failed",
-                                message: "Failed to parse response into JSON"
-                            }, reject);
-
-                        } else {
-
-                            ConsoleHandler.Info ({
-                                code: "api/fetched-successfully",
-                                message: "Successfully fetched and parsed data",
-                                data: data
-                            }, resolve);
-
-                        }
-
-
-                    });
-
-                })
-                .catch ( () => {
-
-                    ConsoleHandler.Error ({
-                        code: "api/fetch-failed",
-                        message: "Failed to fetch data due to inaccessible location data"
-                    }, reject);
-
-                });
-
-            } else {
-
-                // Fetches the CSV file associated with those coordinates
-                // Passes through a CORS Proxy due to the fact that the API does not send 
-                // The correct headers
-                fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=ALLSKY_SFC_SW_DWN&community=RE&longitude=${ longitude}&latitude=${ latitude }&start=20210101&end=20210107&format=CSV` )
-                .then ( ( response ) => response.text () )
-                .then ( ( csvData ) => {
-
-                    // Parses the CSV data into JSON
-                    const data = Papa.parse ( csvData, {});
-
-                    if ( data.errors.length > 0 ) {
-
-                        ConsoleHandler.Error ({
-                            code: "api/parse-failed",
-                            message: "Failed to parse response into JSON"
-                        }, reject);
-
-                    } else {
-
-                        ConsoleHandler.Info ({
-                            code: "api/fetched-successfully",
-                            message: "Successfully fetched and parsed data",
-                            data: data
-                        }, resolve);
-
-                    }
-
-
-                });
+            // Checks if the parameters are valid
+            if ( parameters.length === 0 || parameters.length > 20 ) {
+                
+                ConsoleHandler.Error ({
+                    code: "api/invalid-params",
+                    message: "Invalid parameters!"
+                }, reject);
 
             }
 
-        });
-    },
-
-    FetchWindspeed10Meters: ( longitude, latitude, start, end ) => {
-        return new Promise ( ( resolve, reject ) => {
-
             // Calculates the date
             const date = new Date ();
             const year = date.getUTCFullYear ();
@@ -143,7 +62,7 @@ const ApiHandler = {
                     // Fetches the CSV file associated with those coordinates
                     // Passes through a CORS Proxy due to the fact that the API does not send 
                     // The correct headers
-                    fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WS10M&community=RE&longitude=${ result.data.coords.longitude}&latitude=${ result.data.coords.latitude }&start=${ start || `${ year - 1 }${ month }${ day }` }&end=${ end || `${ year }${ month }${ day }` }&format=CSV` )
+                    fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${ parameters.toString () }&community=RE&longitude=${ result.data.coords.longitude}&latitude=${ result.data.coords.latitude }&start=${ start || `${ year - 1 }${ month }${ day }` }&end=${ end || `${ year }${ month }${ day }` }&format=CSV` )
                     .then ( ( response ) => response.text () )
                     .then ( ( csvData ) => {
 
@@ -185,7 +104,7 @@ const ApiHandler = {
                 // Fetches the CSV file associated with those coordinates
                 // Passes through a CORS Proxy due to the fact that the API does not send 
                 // The correct headers
-                fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=WS10M&community=RE&longitude=${ longitude}&latitude=${ latitude }&start=20210101&end=20210107&format=CSV` )
+                fetch ( `https://cors.bridged.cc/https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${ parameters.toString () }&community=RE&longitude=${ longitude}&latitude=${ latitude }&start=20210101&end=20210107&format=CSV` )
                 .then ( ( response ) => response.text () )
                 .then ( ( csvData ) => {
 
