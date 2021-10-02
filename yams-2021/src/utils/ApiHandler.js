@@ -39,7 +39,7 @@ const ApiHandler = {
             // Calculates the date
             const date = new Date ();
             const year = date.getUTCFullYear ();
-            const month = date.getUTCMonth ().toString ().length === 1 ? `0${ date.getUTCMonth () + 1 }` : `${ date.getUTCMonth () + 1 }`;
+            const month = ( date.getUTCMonth () + 1 ).toString ().length === 1 ? `0${ date.getUTCMonth () + 1 }` : `${ date.getUTCMonth () + 1 }`;
             const day = date.getUTCDate ().toString ().length === 1 ? `0${ date.getUTCDate () }` : `${ date.getUTCDate () }`;
 
             if ( !longitude || !latitude ) {
