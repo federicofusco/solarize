@@ -36,21 +36,21 @@ const DataSelector = ({ OnChange }) => {
                 
                 </div>
 
-                <div className="w-full flex justify-between">
-                    <Checkbox Ref={ SolarIrradianceRef } OnChange={ Update } Value="Solar Irradiance" />
-                    <Checkbox Ref={ FrostRef } OnChange={ Update } Value="Frost" />
-                </div>
+                <div className="w-full flex justify-center">
+                    
+                    <div className="w-1/2">
+                        <Checkbox Ref={ SolarIrradianceRef } OnChange={ Update } Value="Solar Irradiance" />
+                        <Checkbox Ref={ FrostRef } OnChange={ Update } Value="Frost" />
+                        <Checkbox Ref={ HumidityRef } OnChange={ Update } Value="Humidity" />
+                    </div>
 
-                <div className="mt-2 w-full flex justify-between">
-                    <Checkbox Ref={ HumidityRef } OnChange={ Update } Value="Humidity" />
-                    <Checkbox Ref={ PrecipitationRef } OnChange={ Update } Value="Precipitation" />
+                    <div className="w-1/2">
+                        <Checkbox Ref={ PrecipitationRef } OnChange={ Update } Value="Precipitation" />
+                        <Checkbox Ref={ TemperatureRef } OnChange={ Update } Value="Temperature" />
+                        <Checkbox Ref={ WindspeedRef } OnChange={ Update } Value="Windspeed" />
+                    </div>
+                
                 </div>
-
-                <div className="mt-2 w-full flex justify-between">
-                    <Checkbox Ref={ TemperatureRef } OnChange={ Update } Value="Temperature" />
-                    <Checkbox Ref={ WindspeedRef } OnChange={ Update } Value="Windspeed" />
-                </div>
-
             </div>
         </div>
     )
