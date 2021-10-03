@@ -1,6 +1,3 @@
-// Imports React Router components
-import { Link } from "react-router-dom";
-
 const Description = ({ Name, Description, Sources, Uses }) => {
 
     return (
