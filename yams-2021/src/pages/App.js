@@ -85,9 +85,7 @@ class App extends React.Component {
 
     }
 
-    UpdateChart ( longitude, latitude, start, end ) {
-
-        const parameter = "ALLSKY_SFC_SW_DWN";
+    UpdateChart ( longitude, latitude, start, end, parameter ) {
 
         ApiHandler.FetchAPIData ([parameter], longitude, latitude, start, end )
         .then ( async ( result ) => {
@@ -165,7 +163,8 @@ class App extends React.Component {
                     }} 
                     
                     UpdateCallback={ this.UpdateChart } 
-                    Maximized={ false } />
+                    Maximized={ false } 
+                    Parameter="ALLSKY_SFC_SW_DWN" />
                 }
 
             </div>

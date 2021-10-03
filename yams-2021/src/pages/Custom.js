@@ -157,54 +157,6 @@ class Custom extends React.Component {
 
     }
 
-    componentDidMount () {
-
-        // const parameter = "ALLSKY_SFC_SW_DWN";
-
-        // ApiHandler.FetchAPIData ([parameter])
-        // .then ( async ( result ) => {
-
-        //     const data = Object.values ( JSON.parse ( result.data ).properties.parameter[parameter] );
-        //     var values = [];
-        //     var temp = [];
-        //     var average = 0;
-
-        //     // Loops the data and calculates each weeks average
-        //     for ( var x = 0; x < data.length; x++ ) {
-
-        //         // Verifies that the data has been properly indexed
-        //         if ( data[x] > 0 ) {
-
-        //             if ( temp.length < 7 ) {
-        //                 temp.push ( data[x] );
-        //             } else {
-
-        //                 // Calculates the average
-        //                 for ( var y = 0; y < temp.length; y++ ) {
-
-        //                     average += temp[y];
-
-        //                 }
-        //                 average /= temp.length + 1;
-
-        //                 values.push ( average );
-        //                 temp = [];
-        //                 temp.push ( data[x] );
-
-        //             }
-
-        //         }
-
-        //     }
-
-        //     this.setState ({
-        //         apiData: values
-        //     });
-
-        // });
-
-    }
-
     ToggleMenu () {
 
         // Updates the state
@@ -214,9 +166,7 @@ class Custom extends React.Component {
 
     }
 
-    UpdateChart ( longitude, latitude, start, end ) {
-
-        const parameter = "ALLSKY_SFC_SW_DWN";
+    UpdateChart ( longitude, latitude, start, end, parameter ) {
 
         ApiHandler.FetchAPIData ([parameter], longitude, latitude, start, end )
         .then ( async ( result ) => {
@@ -233,9 +183,10 @@ class Custom extends React.Component {
 
             }
 
-            this.setState ({
-                apiData: values
-            });
+            var finalResult = Object.assign ( this.state );
+            finalResult["charts"][parameter]["data"] = values;
+
+            this.setState ( finalResult );
 
         });
 
@@ -244,7 +195,7 @@ class Custom extends React.Component {
     UpdateChartList ( charts ) {
 
         // Loops through each chart
-        Object.entries ( charts ).map ( ( chart ) => {
+        Object.entries ( charts ).map ( async ( chart ) => {
 
             // Checks if the chart should be visible
             if ( chart[1] ) {
@@ -274,6 +225,8 @@ class Custom extends React.Component {
 
             }
 
+            return;
+
         })
 
     }
@@ -289,14 +242,6 @@ class Custom extends React.Component {
 
                 <DataSelector OnChange={ this.UpdateChartList } />
 
-                {/* { !this.state.apiData &&
-                    <div className="w-full px-4 my-8">
-                        <div className="w-full py-8 bg-gray-200 bg-opacity-30 rounded-lg flex justify-center">
-                            <p>Loading . . .</p>
-                        </div>
-                    </div>
-                } */}
-
                 { Object.entries ( this.state.charts ).map ( ( item, i ) => {
                     
                     if ( this.state.charts[item[0]].data ) {
@@ -311,36 +256,15 @@ class Custom extends React.Component {
                                         }]
                                     }
                                 }}
-                                UpdateCallback={ () => {} }
-                                Visible={ false } />;
+                                UpdateCallback={ this.UpdateChart }
+                                Maximized={ false } 
+                                Parameter={ item[0] } />;
                     } else {
-                        return <p key={ item[0] }>{ item[0] }</p>
+                        return <div key={ item[0] } className="hidden"></div>;
                     }
 
                 }) }
 
-                {/* { this.state.charts. &&
-                    <Chart 
-                    Data={ }
-
-                    Options={{
-                        responsive: true,
-                        scales: {
-                            yAxes: [{
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: ( value, index ) => {
-                                        return value + "@";
-                                    }
-                                }
-                            }]
-                        }
-                    }} 
-                    
-                    UpdateCallback={ this.UpdateChart }
-                    Visible={ false } />
-                } */}
-                
             </div>
         )
 

@@ -6,7 +6,7 @@ import { Line } from "react-chartjs-2";
 import Input from "./Input";
 import Button from "./Button";
 
-const Chart = ({ Data, Options, UpdateCallback, Maximized }) => {
+const Chart = ({ Data, Options, UpdateCallback, Maximized, Parameter }) => {
 
     const LongitudeRef = React.createRef ( null );
     const LatitudeRef = React.createRef ( null );
@@ -27,7 +27,8 @@ const Chart = ({ Data, Options, UpdateCallback, Maximized }) => {
             LongitudeRef.current.value, 
             LatitudeRef.current.value,
             `${ StartYear.current.value }${ StartMonth.current.value }${ StartDay.current.value }`,
-            `${ EndYear.current.value }${ EndMonth.current.value }${ EndDay.current.value }`
+            `${ EndYear.current.value }${ EndMonth.current.value }${ EndDay.current.value }`,
+            Parameter
         );
 
     }

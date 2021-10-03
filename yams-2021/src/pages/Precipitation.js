@@ -85,9 +85,7 @@ class Precipitation extends React.Component {
 
     }
 
-    UpdateChart ( longitude, latitude, start, end ) {
-
-        const parameter = "PRECTOTCORR";
+    UpdateChart ( longitude, latitude, start, end, parameter ) {
 
         ApiHandler.FetchAPIData ([parameter], longitude, latitude, start, end )
         .then ( async ( result ) => {
@@ -164,7 +162,8 @@ class Precipitation extends React.Component {
                     }} 
                     
                     UpdateCallback={ this.UpdateChart }
-                    Maximized={ false } />
+                    Maximized={ false }
+                    Parameter="PRECTOTCORR" />
                 }
                 
             </div>

@@ -87,9 +87,7 @@ class Temperature extends React.Component {
 
     }
 
-    UpdateChart ( longitude, latitude, start, end ) {
-
-        const parameter = "T2M";
+    UpdateChart ( longitude, latitude, start, end, parameter ) {
 
         ApiHandler.FetchAPIData ([parameter], longitude, latitude, start, end )
         .then ( async ( result ) => {
@@ -166,7 +164,8 @@ class Temperature extends React.Component {
                     }} 
                     
                     UpdateCallback={ this.UpdateChart }
-                    Maximized={ false } />
+                    Maximized={ false }
+                    Parameter="T2M" />
                 }
                 
             </div>
