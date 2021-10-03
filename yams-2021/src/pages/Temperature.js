@@ -165,7 +165,8 @@ class Temperature extends React.Component {
                         }
                     }} 
                     
-                    UpdateCallback={ this.UpdateChart } />
+                    UpdateCallback={ this.UpdateChart }
+                    Maximized={ false } />
                 }
                 
             </div>

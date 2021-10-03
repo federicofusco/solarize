@@ -6,7 +6,7 @@ import { Line } from "react-chartjs-2";
 import Input from "./Input";
 import Button from "./Button";
 
-const Chart = ({ Data, Options, UpdateCallback, Visible }) => {
+const Chart = ({ Data, Options, UpdateCallback, Maximized }) => {
 
     const LongitudeRef = React.createRef ( null );
     const LatitudeRef = React.createRef ( null );
@@ -19,7 +19,7 @@ const Chart = ({ Data, Options, UpdateCallback, Visible }) => {
     const EndMonth = React.createRef ( null );
     const EndYear = React.createRef ( null ); 
 
-    const [visible, toggleVisibility] = useState ( typeof Visible === "boolean" ? Visible : true );
+    const [visible, toggleVisibility] = useState ( typeof Maximized === "boolean" ? Maximized : true );
 
     const Update = () => {
 
