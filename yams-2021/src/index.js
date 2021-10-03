@@ -15,6 +15,7 @@ import Temperature from "./pages/Temperature";
 import Frost from "./pages/Frost";
 import Humidity from "./pages/Humidity";
 import Precipitation from './pages/Precipitation';
+import Custom from "./pages/Custom";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -26,6 +27,7 @@ ReactDOM.render(
         <Route path="/frost" component={ Frost } />
         <Route path="/humidity" component={ Humidity } />
         <Route path="/precipitation" component={ Precipitation } />
+        <Route path="/custom" component={ Custom } />
       </Switch>
     </Router>
   </React.StrictMode>,

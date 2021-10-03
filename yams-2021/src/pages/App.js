@@ -93,9 +93,19 @@ class App extends React.Component {
         .then ( async ( result ) => {
 
             const data = Object.values ( JSON.parse ( result.data ).properties.parameter[parameter] );
+            const values = [];
+
+            // Loops through the values and removes the ones that haven't been indexed
+            for ( var x = 0; x < data.length; x++ ) {
+
+                if ( data[x] > 0 ) {
+                    values.push ( data[x] );
+                }
+
+            }
 
             this.setState ({
-                apiData: data
+                apiData: values
             });
 
         });
@@ -156,7 +166,7 @@ class App extends React.Component {
                     
                     UpdateCallback={ this.UpdateChart } />
                 }
-                
+
             </div>
         )
 
