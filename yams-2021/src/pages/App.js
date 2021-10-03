@@ -5,6 +5,7 @@ import React from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "./../components/Navbar";
 import Chart from "../components/Chart";
+import Description from "../components/Description";
 
 // Imports utils
 import ApiHandler from "../utils/ApiHandler";
@@ -166,6 +167,21 @@ class App extends React.Component {
                     Maximized={ false } 
                     Parameter="ALLSKY_SFC_SW_DWN" />
                 }
+
+                <Description 
+                Name="Solar Irradiation" 
+                Description="Solar irradiance is the power per unit area received from the Sun in the form of electromagnetic radiation as measured in the wavelength range of the measuring instrument. The solar irradiance is measured in watt per square metre (W/m2) in SI units." 
+                Sources="https://en.wikipedia.org/wiki/Solar_irradiance#Applications"
+                Uses={[
+                    {
+                        title: "Solar Power",
+                        content: "Solar Irradiation can be usedd to calculate how effective solar panels courld be in a given region"
+                    },
+                    {
+                        title: "Climate Research",
+                        content: "Solar Irradiation is a key part of modelling the global climate, even on a small scale."
+                    }
+                ]} />
 
             </div>
         )
