@@ -1,0 +1,26 @@
+{
+  "name": "cors-2021",
+  "version": "1.0.0",
+  "description": "A CORS proxy to access the NASA POWER API",
+  "main": "proxy.js",
+  "scripts": {
+    "start": "nodemon proxy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/federicofusco/SpaceAppsChallenge.git"
+  },
+  "author": "Federico Fusco",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/federicofusco/SpaceAppsChallenge/issues"
+  },
+  "homepage": "https://github.com/federicofusco/SpaceAppsChallenge#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  },
+  "dependencies": {
+    "axios": "^0.22.0",
+    "express": "^4.17.1"
+  }
+}
