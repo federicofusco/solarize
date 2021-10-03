@@ -8,7 +8,7 @@ const Description = ({ Name, Description, Sources, Uses }) => {
 
             <h1 className="text-2xl font-poppins font-extrabold mb-3">{ Name }</h1>
             <p className="text-md font-source-sans">{ Description }</p>
-            <Link to={ Sources } className="text-sm font-semibold text-blue-600 font-source-sans block mt-4">Sources</Link>
+            <a href={ Sources } className="text-sm decoration-none font-semibold text-blue-600 font-source-sans block mt-4">Sources</a>
 
             <h1 className="text-xl font-poppins font-bold mt-6 mb-3">Uses</h1>
             { Uses.map ( ( use, i ) => {
