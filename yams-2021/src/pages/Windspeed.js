@@ -85,48 +85,17 @@ class Windspeed extends React.Component {
 
     }
 
-    UpdateChart ( longitude, latitude ) {
+    UpdateChart ( longitude, latitude, start, end ) {
 
-        const parameter = "ALLSKY_SFC_SW_DWN";
+        const parameter = "WS10M";
 
-        ApiHandler.FetchAPIData ([parameter], longitude, latitude )
+        ApiHandler.FetchAPIData ([parameter], longitude, latitude, start, end )
         .then ( async ( result ) => {
 
             const data = Object.values ( JSON.parse ( result.data ).properties.parameter[parameter] );
-            var values = [];
-            var temp = [];
-            var average = 0;
-
-            // Loops the data and calculates each weeks average
-            for ( var x = 0; x < data.length; x++ ) {
-
-                // Verifies that the data has been properly indexed
-                if ( data[x] > 0 ) {
-
-                    if ( temp.length < 8 ) {
-                        temp.push ( data[x] );
-                    } else {
-
-                        // Calculates the average
-                        for ( var y = 0; y < temp.length; y++ ) {
-
-                            average += temp[y];
-
-                        }
-                        average /= temp.length + 1;
-
-                        values.push ( average );
-                        temp = [];
-                        temp.push ( data[x] );
-
-                    }
-
-                }
-
-            }
 
             this.setState ({
-                windSpeedData: values
+                solarIrradianceData: data
             });
 
         });
