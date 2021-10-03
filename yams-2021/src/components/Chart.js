@@ -6,7 +6,7 @@ import { Line } from "react-chartjs-2";
 import Input from "./Input";
 import Button from "./Button";
 
-const Chart = ({ Data, Options, UpdateCallback }) => {
+const Chart = ({ Data, Options, UpdateCallback, Visible }) => {
 
     const LongitudeRef = React.createRef ( null );
     const LatitudeRef = React.createRef ( null );
@@ -19,7 +19,7 @@ const Chart = ({ Data, Options, UpdateCallback }) => {
     const EndMonth = React.createRef ( null );
     const EndYear = React.createRef ( null ); 
 
-    const [visible, toggleVisibility] = useState ( true );
+    const [visible, toggleVisibility] = useState ( typeof Visible === "boolean" ? Visible : true );
 
     const Update = () => {
 
@@ -75,7 +75,7 @@ const Chart = ({ Data, Options, UpdateCallback }) => {
                         <Button Text="Update" OnClick={ Update.bind ( this ) } />
 
                         <div onClick={ Toggle.bind ( this ) } className="w-full flex justify-center">
-                            <p className="my-3 text-sm">Minify</p>
+                            <p className="my-3 text-sm">Minimize</p>
                         </div>
                     </div>
                 }
