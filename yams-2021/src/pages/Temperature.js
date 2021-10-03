@@ -113,6 +113,14 @@ class Temperature extends React.Component {
 
                 <Navbar ToggleMenu={ this.ToggleMenu } />
 
+                { !this.state.apiData &&
+                    <div className="w-full px-4 my-8">
+                        <div className="w-full py-8 bg-gray-200 bg-opacity-30 rounded-lg flex justify-center">
+                            <p>Loading . . .</p>
+                        </div>
+                    </div>
+                }
+
                 { this.state.apiData && 
                     <Chart Data={ () => { 
 
