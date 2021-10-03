@@ -5,6 +5,7 @@ import React from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "./../components/Navbar";
 import Chart from "../components/Chart";
+import Description from "../components/Description";
 
 // Imports utils
 import ApiHandler from "../utils/ApiHandler";
@@ -165,6 +166,17 @@ class Frost extends React.Component {
                     Maximized={ false }
                     Parameter="T2MDEW" />
                 }
+
+                <Description
+                Name="Dew / Frost"
+                Description="The dew/frost point temperature at 2 meters above the surface of the earth measured in C."
+                Sources="https://power.larc.nasa.gov/#resources"
+                Uses={[
+                    {
+                        title: "Agriculture",
+                        content: "Numerous plants can be affected severly by low temperatures and frost. For example, grapes can die or be harmed by light frosts reachin -2 C"
+                    }
+                ]} />
                 
             </div>
         )

@@ -14,7 +14,7 @@ const Description = ({ Name, Description, Sources, Uses }) => {
             { Uses.map ( ( use, i ) => {
 
                 return (
-                    <div className="w-full mt-3">
+                    <div key={ i } className="w-full mt-3">
                         <p className="text-md font-poppins font-semibold">{ i + 1 }. { use.title }</p>
                         <p className="text-md font-source-sans">{ use.content }</p>
                     </div>
