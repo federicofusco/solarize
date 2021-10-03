@@ -4,12 +4,11 @@ import React from "react";
 // Imports components
 import Sidebar from "../components/Sidebar";
 import Navbar from "./../components/Navbar";
+import Chart from "../components/Chart";
+import Description from "../components/Description";
 
 // Imports utils
 import ApiHandler from "../utils/ApiHandler";
-
-// Imports dependencies
-import Chart from "../components/Chart";
 
 // Defines the page
 class Temperature extends React.Component {
@@ -166,8 +165,20 @@ class Temperature extends React.Component {
                     UpdateCallback={ this.UpdateChart }
                     Maximized={ false }
                     Parameter="T2M" />
+
                 }
-                
+
+                <Description 
+                Name="Temperature"
+                Description="Temperature is a physical quantity that expresses hot and cold. It is the manifestation of thermal energy, present in all matter, which is the source of the occurrence of heat, a flow of energy, when a body is in contact with another that is colder or hotter." 
+                Sources="https://en.wikipedia.org/wiki/Temperature" 
+                Uses={[
+                    {
+                        title: "Coats",
+                        content: "With this you can remember last week when you forgot your coat and froze while walking in the street!"
+                    }
+                ]} />
+
             </div>
         )
 
