@@ -20,6 +20,7 @@ class Temperature extends React.Component {
 
         // Binds  method
         this.ToggleMenu = this.ToggleMenu.bind ( this );
+        this.UpdateChart = this.UpdateChart.bind ( this );
 
         // Sets the state
         this.state = {
@@ -86,6 +87,54 @@ class Temperature extends React.Component {
 
     }
 
+    UpdateChart ( longitude, latitude ) {
+
+        const parameter = "ALLSKY_SFC_SW_DWN";
+
+        ApiHandler.FetchAPIData ([parameter], longitude, latitude )
+        .then ( async ( result ) => {
+
+            const data = Object.values ( JSON.parse ( result.data ).properties.parameter[parameter] );
+            var values = [];
+            var temp = [];
+            var average = 0;
+
+            // Loops the data and calculates each weeks average
+            for ( var x = 0; x < data.length; x++ ) {
+
+                // Verifies that the data has been properly indexed
+                if ( data[x] > 0 ) {
+
+                    if ( temp.length < 8 ) {
+                        temp.push ( data[x] );
+                    } else {
+
+                        // Calculates the average
+                        for ( var y = 0; y < temp.length; y++ ) {
+
+                            average += temp[y];
+
+                        }
+                        average /= temp.length + 1;
+
+                        values.push ( average );
+                        temp = [];
+                        temp.push ( data[x] );
+
+                    }
+
+                }
+
+            }
+
+            this.setState ({
+                temperatureData: values
+            });
+
+        });
+
+    }
+
     render () {
 
         return (
@@ -127,7 +176,9 @@ class Temperature extends React.Component {
                                 }
                             }]
                         }
-                    }} />
+                    }} 
+                    
+                    UpdateCallback={ this.UpdateChart } />
                 }
                 
             </div>
