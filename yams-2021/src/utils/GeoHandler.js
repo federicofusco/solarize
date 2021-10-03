@@ -11,25 +11,45 @@ const GeoHandler = {
     GetPosition: () => {
         return new Promise ( ( resolve, reject ) => {
 
-            // Attemps to fetch the user's current location
-            geolocation.getCurrentPosition ( ( coords ) => {
+            if ( !localStorage.getItem ( "position" ) ) {
+
+                // Attemps to fetch the user's current location
+                geolocation.getCurrentPosition ( ( coords ) => {
+
+                    // Caches position
+                    localStorage.setItem ( "position", JSON.stringify({
+                        coords: {
+                            latitude: coords.coords.latitude,
+                            longitude: coords.coords.longitude
+                        }
+                    }));
+
+                    ConsoleHandler.Info ({
+                        code: "geo/coords-fetched",
+                        message: "Fetched user's location",
+                        data: coords
+                    }, resolve);
+
+                }, ( error ) => {
+
+                    ConsoleHandler.Error ({
+                        code: "geo/coords-not-fetched",
+                        message: "Failed to fetch user's location\nUser probably didn't give permission"
+                    }, reject);
+
+                }, {
+                    enableHighAccuracy: true
+                });
+
+            } else {
 
                 ConsoleHandler.Info ({
                     code: "geo/coords-fetched",
                     message: "Fetched user's location",
-                    data: coords
+                    data: JSON.parse ( localStorage.getItem ( "position" ) )
                 }, resolve);
 
-            }, ( error ) => {
-
-                ConsoleHandler.Error ({
-                    code: "geo/coords-not-fetched",
-                    message: "Failed to fetch user's location\nUser probably didn't give permission"
-                }, reject);
-
-            }, {
-                enableHighAccuracy: true
-            });
+            }
 
         });
     }
