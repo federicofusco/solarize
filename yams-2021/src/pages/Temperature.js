@@ -9,7 +9,7 @@ import Navbar from "./../components/Navbar";
 import ApiHandler from "../utils/ApiHandler";
 
 // Imports dependencies
-import { Line } from "react-chartjs-2";
+import Chart from "../components/Chart";
 
 // Defines the page
 class Temperature extends React.Component {
@@ -95,42 +95,40 @@ class Temperature extends React.Component {
 
                 <Navbar ToggleMenu={ this.ToggleMenu } />
 
-                { this.state.temperatureData &&
-                <div className="w-full px-4 my-8">
-                    <div className="w-full p-2 bg-gray-100 bg-opacity-50 rounded-lg">
-                        <Line data={() => { 
+                { this.state.temperatureData && 
+                    <Chart Data={ () => { 
 
-                            var labels = [];
-                            for ( var x = 0; x < this.state.temperatureData.length; x++ ) {
-                                labels.push ( ( x + 1 ).toString () );
-                            }
+                    var labels = [];
+                    for ( var x = 0; x < this.state.temperatureData.length; x++ ) {
+                        labels.push ( ( x + 1 ).toString () );
+                    }
 
-                            return {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'Temperature (C)',
-                                    data: this.state.temperatureData,
-                                    fill: false,
-                                    backgroundColor: 'rgb(255, 99, 132)',
-                                    borderColor: 'rgba(255, 99, 132, 0.2)'
-                                }]
-                            }
-                        }} options={{
-                            responsive: true,
-                            scales: {
-                                yAxes: [{
-                                    beginAtZero: true,
-                                    ticks: {
-                                        callback: ( value, index ) => {
-                                            return value + "@";
-                                        }
+                    return {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Temperature (C)',
+                            data: this.state.temperatureData,
+                            fill: false,
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgba(255, 99, 132, 0.2)'
+                        }]
+                    }
+                    }}
+
+                    Options={{
+                        responsive: true,
+                        scales: {
+                            yAxes: [{
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: ( value, index ) => {
+                                        return value + "@";
                                     }
-                                }]
-                            }
-                        }} />
-                    </div>
-                </div>
-            }
+                                }
+                            }]
+                        }
+                    }} />
+                }
                 
             </div>
         )

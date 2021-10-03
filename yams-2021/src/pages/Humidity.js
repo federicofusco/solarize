@@ -4,12 +4,10 @@ import React from "react";
 // Imports components
 import Sidebar from "../components/Sidebar";
 import Navbar from "./../components/Navbar";
+import Chart from "./../components/Chart";
 
 // Imports utils
 import ApiHandler from "../utils/ApiHandler";
-
-// Imports dependencies
-import { Line } from "react-chartjs-2";
 
 // Defines the page
 class Humidity extends React.Component {
@@ -95,42 +93,40 @@ class Humidity extends React.Component {
 
                 <Navbar ToggleMenu={ this.ToggleMenu } />
 
-                { this.state.humidityData &&
-                <div className="w-full px-4 my-8">
-                    <div className="w-full p-2 bg-gray-100 bg-opacity-50 rounded-lg">
-                        <Line data={() => { 
+                { this.state.humidityData && 
+                    <Chart Data={ () => { 
 
-                            var labels = [];
-                            for ( var x = 0; x < this.state.humidityData.length; x++ ) {
-                                labels.push ( ( x + 1 ).toString () );
-                            }
+                    var labels = [];
+                    for ( var x = 0; x < this.state.humidityData.length; x++ ) {
+                        labels.push ( ( x + 1 ).toString () );
+                    }
 
-                            return {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'Humidity (g / kg)',
-                                    data: this.state.humidityData,
-                                    fill: false,
-                                    backgroundColor: 'rgb(255, 99, 132)',
-                                    borderColor: 'rgba(255, 99, 132, 0.2)'
-                                }]
-                            }
-                        }} options={{
-                            responsive: true,
-                            scales: {
-                                yAxes: [{
-                                    beginAtZero: true,
-                                    ticks: {
-                                        callback: ( value, index ) => {
-                                            return value + "@";
-                                        }
+                    return {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Humidity (g / kg)',
+                            data: this.state.humidityData,
+                            fill: false,
+                            backgroundColor: 'rgb(255, 99, 132)',
+                            borderColor: 'rgba(255, 99, 132, 0.2)'
+                        }]
+                    }
+                    }}
+
+                    Options={{
+                        responsive: true,
+                        scales: {
+                            yAxes: [{
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: ( value, index ) => {
+                                        return value + "@";
                                     }
-                                }]
-                            }
-                        }} />
-                    </div>
-                </div>
-            }
+                                }
+                            }]
+                        }
+                    }} />
+                }
                 
             </div>
         )
