@@ -24,7 +24,7 @@ class Temperature extends React.Component {
 
         // Sets the state
         this.state = {
-            temperatureData: undefined,
+            apiData: undefined,
             menuVisible: false
         }
 
@@ -71,7 +71,7 @@ class Temperature extends React.Component {
             }
 
             this.setState ({
-                temperatureData: values
+                apiData: values
             });
 
         });
@@ -97,7 +97,7 @@ class Temperature extends React.Component {
             const data = Object.values ( JSON.parse ( result.data ).properties.parameter[parameter] );
 
             this.setState ({
-                solarIrradianceData: data
+                apiData: data
             });
 
         });
@@ -113,11 +113,11 @@ class Temperature extends React.Component {
 
                 <Navbar ToggleMenu={ this.ToggleMenu } />
 
-                { this.state.temperatureData && 
+                { this.state.apiData && 
                     <Chart Data={ () => { 
 
                     var labels = [];
-                    for ( var x = 0; x < this.state.temperatureData.length; x++ ) {
+                    for ( var x = 0; x < this.state.apiData.length; x++ ) {
                         labels.push ( ( x + 1 ).toString () );
                     }
 
@@ -125,7 +125,7 @@ class Temperature extends React.Component {
                         labels: labels,
                         datasets: [{
                             label: 'Temperature (C)',
-                            data: this.state.temperatureData,
+                            data: this.state.apiData,
                             fill: false,
                             backgroundColor: 'rgb(255, 99, 132)',
                             borderColor: 'rgba(255, 99, 132, 0.2)'

@@ -22,7 +22,7 @@ class Precipitation extends React.Component {
 
         // Sets the state
         this.state = {
-            precipitationData: undefined,
+            apiData: undefined,
             menuVisible: false
         }
 
@@ -69,7 +69,7 @@ class Precipitation extends React.Component {
             }
 
             this.setState ({
-                precipitationData: values
+                apiData: values
             });
 
         });
@@ -95,7 +95,7 @@ class Precipitation extends React.Component {
             const data = Object.values ( JSON.parse ( result.data ).properties.parameter[parameter] );
 
             this.setState ({
-                solarIrradianceData: data
+                apiData: data
             });
 
         });
@@ -111,11 +111,11 @@ class Precipitation extends React.Component {
 
                 <Navbar ToggleMenu={ this.ToggleMenu } />
 
-                { this.state.precipitationData &&
+                { this.state.apiData &&
                     <Chart Data={ () => { 
 
                     var labels = [];
-                    for ( var x = 0; x < this.state.precipitationData.length; x++ ) {
+                    for ( var x = 0; x < this.state.apiData.length; x++ ) {
                         labels.push ( ( x + 1 ).toString () );
                     }
 
@@ -123,7 +123,7 @@ class Precipitation extends React.Component {
                         labels: labels,
                         datasets: [{
                             label: 'Precipitation (mm)',
-                            data: this.state.precipitationData,
+                            data: this.state.apiData,
                             fill: false,
                             backgroundColor: 'rgb(255, 99, 132)',
                             borderColor: 'rgba(255, 99, 132, 0.2)'

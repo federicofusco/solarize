@@ -22,7 +22,7 @@ class Windspeed extends React.Component {
 
         // Sets the state
         this.state = {
-            windSpeedData: undefined,
+            apiData: undefined,
             menuVisible: false
         }
 
@@ -69,7 +69,7 @@ class Windspeed extends React.Component {
             }
 
             this.setState ({
-                windSpeedData: values
+                apiData: values
             });
 
         });
@@ -95,7 +95,7 @@ class Windspeed extends React.Component {
             const data = Object.values ( JSON.parse ( result.data ).properties.parameter[parameter] );
 
             this.setState ({
-                solarIrradianceData: data
+                apiData: data
             });
 
         });
@@ -111,11 +111,11 @@ class Windspeed extends React.Component {
 
                 <Navbar ToggleMenu={ this.ToggleMenu } />
 
-                { this.state.windSpeedData &&
+                { this.state.apiData &&
                     <Chart Data={ () => { 
 
                     var labels = [];
-                    for ( var x = 0; x < this.state.windSpeedData.length; x++ ) {
+                    for ( var x = 0; x < this.state.apiData.length; x++ ) {
                         labels.push ( ( x + 1 ).toString () );
                     }
 
@@ -123,7 +123,7 @@ class Windspeed extends React.Component {
                         labels: labels,
                         datasets: [{
                             label: 'Wind Speed (m / s)',
-                            data: this.state.windSpeedData,
+                            data: this.state.apiData,
                             fill: false,
                             backgroundColor: 'rgb(255, 99, 132)',
                             borderColor: 'rgba(255, 99, 132, 0.2)'
