@@ -5,6 +5,7 @@ import { Line } from "react-chartjs-2";
 // Imports components
 import Input from "./Input";
 import Button from "./Button";
+import Radio from "./Radio";
 
 const Chart = ({ Data, Options, UpdateCallback, Maximized, Parameter }) => {
 
@@ -19,6 +20,11 @@ const Chart = ({ Data, Options, UpdateCallback, Maximized, Parameter }) => {
     const EndMonth = React.createRef ( null );
     const EndYear = React.createRef ( null ); 
 
+    const YearRadioRef = React.createRef ( null ); 
+    const MonthRadioRef = React.createRef ( null ); 
+    const WeekRadioRef = React.createRef ( null );  
+    const DayRadioRef = React.createRef ( null );  
+
     const [visible, toggleVisibility] = useState ( typeof Maximized === "boolean" ? Maximized : true );
 
     const Update = () => {
@@ -30,6 +36,12 @@ const Chart = ({ Data, Options, UpdateCallback, Maximized, Parameter }) => {
             `${ EndYear.current.value }${ EndMonth.current.value }${ EndDay.current.value }`,
             Parameter
         );
+
+    }
+
+    const UpdateResolution = () => {
+
+        // ... Do something ...
 
     }
 
@@ -46,9 +58,12 @@ const Chart = ({ Data, Options, UpdateCallback, Maximized, Parameter }) => {
 
                 { visible &&
                     <div className="w-full p-4">
+                        
+                        {/* Latitude / Longitude */}
                         <Input Placeholder="45.5" Label="Longitude" Type="number" Ref={ LongitudeRef } />
                         <Input Placeholder="8.3" Label="Latitude" Type="number" Ref={ LatitudeRef } />
                         
+                        {/* Start / End */}
                         <div className="w-full flex justify-between">
                             <div className="w-1/3">
                                 <Input Placeholder="DD" Label="From" Type="number" Ref={ StartDay } />
@@ -71,6 +86,14 @@ const Chart = ({ Data, Options, UpdateCallback, Maximized, Parameter }) => {
                             <div className="w-1/3 ml-2">
                                 <Input Placeholder="YYYY" Type="number" Ref={ EndYear } />
                             </div>
+                        </div>
+
+                        {/* Temporal Resolution */}
+                        <div className="w-full flex justify-between">
+                            <Radio Value="1 Year" Ref={ YearRadioRef } OnChange={ UpdateResolution.bind ( this ) } Group="resolution" checked />
+                            <Radio Value="1 Month" Ref={ MonthRadioRef } OnChange={ UpdateResolution.bind ( this ) } Group="resolution" />
+                            <Radio Value="1 Week" Ref={ WeekRadioRef } OnChange={ UpdateResolution.bind ( this ) } Group="resolution" />
+                            <Radio Value="1 Day" Ref={ DayRadioRef } OnChange={ UpdateResolution.bind ( this ) } Group="resolution" />
                         </div>
 
                         <Button Text="Update" OnClick={ Update.bind ( this ) } />
