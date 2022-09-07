@@ -10,7 +10,7 @@
 const GenericSidebar = ({ visible, toggleSidebar, title, children }) => {
 
 	return (
-		<div className={`transition-all duration-150 z-50 w-screen sm:w-1/2 md:w-2/5 lg:w-1/3 h-screen border-r border-gray-300 fixed transform top-1/2 left-0 ${ visible ? "translate-x-0 -translate-y-1/2" : "-translate-x-full -translate-y-1/2" } bg-white px-8`}>
+		<div className={`overflow-auto transition-all duration-150 z-50 w-screen sm:w-1/2 md:w-2/5 lg:w-1/3 h-screen border-r border-gray-300 fixed transform top-1/2 left-0 ${ visible ? "translate-x-0 -translate-y-1/2" : "-translate-x-full -translate-y-1/2" } bg-white px-8 pb-6`}>
 				
 				<div className="w-full h-20 flex justify-between">
 
