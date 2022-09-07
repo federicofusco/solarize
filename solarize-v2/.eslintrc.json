@@ -1,0 +1,11 @@
+{
+  	"extends": "next",
+	"overrides": [
+		{
+			"files": ["**/*.jsx"],
+			"rules": {
+				"react-hooks/exhaustive-deps": "off"
+			}
+		}
+	]
+}	
