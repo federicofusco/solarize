@@ -38,4 +38,8 @@ app.get ( "/proxy/:url", async ( request, response ) => {
 
 });
 
+app.listen ( 5000, () => {
+	console.log ( "[ONLINE]: Proxy online at port 5000" );
+});
+
 module.exports = app;
