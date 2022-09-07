@@ -59,7 +59,7 @@ const ApiHandler = {
                     // Fetches the CSV file associated with those coordinates
                     // Passes through a CORS Proxy due to the fact that the API does not send 
                     // The correct headers
-                    fetch ( `https://solarize-cors-${ Math.ceil ( Math.random () * 8 ) + 1 }.herokuapp.com/proxy/` + encodeURIComponent ( `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${ parameters.toString () }&community=RE&longitude=${ result.data.coords.longitude }&latitude=${ result.data.coords.latitude }&start=${ start || `${ year - 1 }${ month }${ day }` }&end=${ end || `${ year }${ month }${ day }` }&format=JSON` ) )
+                    fetch ( `https://solarize-v1-proxy.vercel.app/proxy/` + encodeURIComponent ( `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${ parameters.toString () }&community=RE&longitude=${ result.data.coords.longitude }&latitude=${ result.data.coords.latitude }&start=${ start || `${ year - 1 }${ month }${ day }` }&end=${ end || `${ year }${ month }${ day }` }&format=JSON` ) )
                     .then ( ( response ) => response.text () )
                     .then ( ( data ) => {
 
@@ -86,7 +86,7 @@ const ApiHandler = {
                 // Fetches the CSV file associated with those coordinates
                 // Passes through a CORS Proxy due to the fact that the API does not send 
                 // The correct headers
-                fetch ( `https://solarize-cors-${ Math.ceil ( Math.random () * 8 ) + 1 }.herokuapp.com/proxy/` + encodeURIComponent ( `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${ parameters.toString () }&community=RE&longitude=${ longitude }&latitude=${ latitude }&start=${ start || `${ year - 1 }${ month }${ day }` }&end=${ end || `${ year }${ month }${ day }` }&format=JSON` ) )
+                fetch ( `https://solarize-v1-proxy.vercel.app/proxy/` + encodeURIComponent ( `https://power.larc.nasa.gov/api/temporal/daily/point?parameters=${ parameters.toString () }&community=RE&longitude=${ longitude }&latitude=${ latitude }&start=${ start || `${ year - 1 }${ month }${ day }` }&end=${ end || `${ year }${ month }${ day }` }&format=JSON` ) )
                 .then ( ( response ) => response.text () )
                 .then ( ( data ) => {
 
