@@ -3,7 +3,7 @@
 	"builds": [
 		{
 			"src": "proxy.js",
-			"use": "@now/node"
+			"use": "@vercel/node"
 		}
 	],
 	"routes": [
