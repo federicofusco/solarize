@@ -40,7 +40,7 @@ const DataPage = ({ parameter, xAxis, yAxis, title, description, meta }) => {
 			.catch ( error => {
 				logError ({
 					code: "index/update-failed",
-					message: "Somthing went wrong! Is geolocation enabled?",
+					message: "Somthing went wrong!",
 					data: error				
 				}, null, true );
 			});

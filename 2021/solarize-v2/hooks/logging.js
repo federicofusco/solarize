@@ -20,7 +20,7 @@ const useLogging = () => {
      *   message: "User friendly success message"
      * }, resolve);
      */
-	const logInfo = ( data, callback, displayNotification = true ) => {
+	const logInfo = ( data, callback, displayNotification ) => {
 		console.info ( `[${ data.code }]: ${ data.message }` );
 
 		if ( callback ) {
@@ -46,8 +46,8 @@ const useLogging = () => {
      *   message: "User friendly error message"
      * }, reject);
      */
-	 const logError = ( data, callback, displayNotification = true ) => {
-        console.warn ( `[${ data.code }]: ${ data.message }`, displayNotification );
+	 const logError = ( data, callback, displayNotification ) => {
+        console.warn ( `[${ data.code }]: ${ data.message }` );
 
         if ( callback ) {
 			callback ( data );
