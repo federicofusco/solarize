@@ -6,7 +6,7 @@ import { SnackbarProvider } from "notistack";
 
 const SolarizeApp = ({ Component, pageProps }) => {
 	return ( 
-		<SnackbarProvider autoHideDuration={ 1500 } maxSnack={ 3 } preventDuplicate>
+		<SnackbarProvider autoHideDuration={ 5000 } maxSnack={ 1 } preventDuplicate>
 			<Component {...pageProps} />
 		</SnackbarProvider>
 	)

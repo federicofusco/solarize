@@ -47,7 +47,7 @@ const useLogging = () => {
      * }, reject);
      */
 	 const logError = ( data, callback, displayNotification = true ) => {
-        console.warn ( `[${ data.code }]: ${ data.message }` );
+        console.warn ( `[${ data.code }]: ${ data.message }`, displayNotification );
 
         if ( callback ) {
 			callback ( data );

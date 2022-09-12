@@ -13,7 +13,7 @@ import useLogging from "./logging";
  */
  const useLocalStorage = ( key, initialValue ) => {
 
-	 const { useError } = useLogging ();
+	 const { logError } = useLogging ();
 
 	// State to store our value
 	// Pass initial state function to useState so logic is only executed once
@@ -35,7 +35,7 @@ import useLogging from "./logging";
 				code: "storage/read-failed",
 				message: `Failed to read data from localStorage`,
 				data: error
-			});
+			}, null, false );
 
 			return initialValue;
 		}
@@ -57,10 +57,11 @@ import useLogging from "./logging";
 				window.localStorage.setItem ( key, JSON.stringify ( valueToStore ) );
 			}
 		} catch ( error ) {
-			useError ({
+			logError ({
 				code: "storage/write-failed",
-				message: "Failed to write data to localStorage"
-			}, console.warn ( "Data: ", valueToStore ) );
+				message: "Failed to write data to localStorage",
+				data: error
+			}, null, false );
 		}
 	};
 

@@ -38,9 +38,9 @@ const ChartSidebar = ({ visible, toggleSidebar, onUpdate }) => {
 			.catch ( error => {
 				logError ({
 					code: "chart/position-denied",
-					message: "Failed to geolocate user",
+					message: "Something went wrong! Is geolocation enabled?",
 					data: error
-				});
+				}, null, true );
 			});
 	}, []);
 

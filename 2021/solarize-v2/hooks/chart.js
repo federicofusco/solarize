@@ -89,9 +89,9 @@ const useChart = () => {
 						// Failed to parse response
 						logError ({
 							code: "chart/parse-failed",
-							message: "Failed to parse API response",
+							message: "Something went wrong!",
 							data: error
-						}, reject );
+						}, reject, true );
 					}
 
 				})
@@ -102,7 +102,7 @@ const useChart = () => {
 						code: "chart/request-failed",
 						message: "Failed to fetch data from API",
 						data: error
-					}, reject);
+					}, reject , false );
 				});
 		});
 	} 
@@ -165,9 +165,9 @@ const useChart = () => {
 				.catch ( error => {
 					logError ({
 						code: "chart/process-failed",
-						message: "Failed to process chart data from API",
+						message: "Failed to process and format chart data",
 						data: error
-					}, reject);
+					}, reject, false );
 				})
 		});
 	}
