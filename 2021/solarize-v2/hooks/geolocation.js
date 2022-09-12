@@ -30,8 +30,8 @@ const useGeo = () => {
 			if ( typeof window === "undefined" ) {
 				logError ({ 
 					code: "geo/server-side-hook",
-					message: "Attempted to run geolocation hook on server-side"
-				}, reject );
+					message: "Attempted to run geolocation hook on server-side!"
+				}, reject, false );
 			}
 
 			const geolocation = navigator.geolocation;
@@ -57,15 +57,15 @@ const useGeo = () => {
 							code: "geo/coords-fetched",
 							message: "Fetched user's location",
 							data: transformFromLocalStorage ( coords )
-						}, resolve );
+						}, resolve, false );
 
 					}, ( error ) => {
 
 						logError ({
 							code: "geo/coords-not-fetched",
-							message: "Failed to fetch user's location\nUser probably didn't give permission",
+							message: "Something went wrong! Is geolocation enabled?",
 							data: error
-						}, reject );
+						}, reject, true );
 
 					}, {
 						enableHighAccuracy: true
@@ -76,7 +76,7 @@ const useGeo = () => {
 						code: "geo/fetched-user-coords",
 						message: "User\'s coordinates have already been cached",
 						data: transformFromLocalStorage ( userPosition )
-					}, resolve );
+					}, resolve, false );
 				}
 
 			} else {
@@ -84,7 +84,7 @@ const useGeo = () => {
 					code: "geo/fetched-chart-coords",
 					message: "User has already specified specific coordinates",
 					data: transformFromLocalStorage ( chartPosition )
-				}, resolve );
+				}, resolve, false );
 			}
         });
 	}

@@ -41,8 +41,8 @@ const useApi = () => {
                 
 				logError ({
                     code: "api/invalid-params",
-                    message: "Invalid parameters!"
-                }, reject);
+                    message: "Something went wrong!"
+                }, reject, true );
 
             }
 
@@ -68,24 +68,24 @@ const useApi = () => {
 										code: "api/fetched-successfully",
 										message: "Successfully fetched and parsed data",
 										data: data
-									}, resolve);
+									}, resolve, false );
 
 								});
 
 						} catch ( error ) {
 							logError ({
 								code: "api/fetch-failed",
-								message: "Failed to fetch data from API",
+								message: "Something went wrong! Check your connection",
 								data: error
-							}, reject);
+							}, reject, true );
 						}
 					})
 					.catch ( ( error ) => {
 						logError ({
 							code: "api/fetch-failed",
-							message: "Failed to fetch data from API",
+							message: "Failed to fetch user position",
 							data: error
-						}, reject);
+						}, reject, false );
 					});
 
             } else {
@@ -101,7 +101,7 @@ const useApi = () => {
 							code: "api/fetched-successfully",
 							message: "Successfully fetched and parsed data",
 							data: data
-						}, resolve);
+						}, resolve, false );
 
 					});
 

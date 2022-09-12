@@ -38,11 +38,24 @@ const ChartSidebar = ({ visible, toggleSidebar, onUpdate }) => {
 			.catch ( error => {
 				logError ({
 					code: "chart/position-denied",
-					message: "Failed to geolocate user",
+					message: "Something went wrong! Is geolocation enabled?",
 					data: error
-				});
+				}, null, true );
 			});
 	}, []);
+
+	useEffect (() => {
+
+		if ( !startDate || !endDate )
+			return;
+
+		if ( startDate["$d"].getTime () >= endDate["$d"].getTime () ) {
+			logError ({
+				code: "date/invalid-date-range",
+				message: "End date must be later than start date!"
+			}, null, true );
+		}
+	}, [startDate, endDate]);
 
 	return (
 		<GenericSidebar
@@ -66,7 +79,7 @@ const ChartSidebar = ({ visible, toggleSidebar, onUpdate }) => {
 				{/* End Date */}
 				<SidebarDateRange label="End Date" onUpdate={ setEndDate } />
 
-				<Button text="Update" disabled={ !position || !startDate || !endDate } onClick={() => onUpdate ( position, startDate, endDate ) } />
+				<Button text="Update" disabled={ !position || !startDate || !endDate || ( startDate["$d"].getTime () >= endDate["$d"].getTime () ) } onClick={() => onUpdate ( position, startDate, endDate ) } />
 			</>
 		</GenericSidebar>
 	)

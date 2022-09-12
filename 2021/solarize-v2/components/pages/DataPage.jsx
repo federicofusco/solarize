@@ -40,9 +40,9 @@ const DataPage = ({ parameter, xAxis, yAxis, title, description, meta }) => {
 			.catch ( error => {
 				logError ({
 					code: "index/update-failed",
-					message: "Failed to fetch data",
+					message: "Somthing went wrong!",
 					data: error				
-				});
+				}, null, true );
 			});
     }
 
@@ -52,9 +52,9 @@ const DataPage = ({ parameter, xAxis, yAxis, title, description, meta }) => {
 			.catch ( error => {
 				logError ({
 					code: "index/fetch-failed",
-					message: "Failed to fetch data",
+					message: "Something went wrong! Is geolocation enabled?",
 					data: error
-				});
+				}, null, true );
 			});
 	}, []);
 
