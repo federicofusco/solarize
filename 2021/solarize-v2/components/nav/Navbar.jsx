@@ -1,5 +1,5 @@
 // Imports components
-import Logo from "./../Logo";
+import Logo from "./../core/Logo";
 
 // Imports React Router components
 import Link from "next/link";

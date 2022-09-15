@@ -1,9 +1,9 @@
 // Imports hooks
-import { useState, createRef } from "react";
+import { useState } from "react";
 
 
 // Imports components
-import ChartSidebar from "./nav/sidebar/ChartSidebar";
+import Sidebar from "./Sidebar";
 import "chart.js/auto";
 import { Chart as ReactChart } from "react-chartjs-2";
 
@@ -50,7 +50,7 @@ const Chart = ({ data, onUpdate, parameter }) => {
 				</div>
 
 
-				<ChartSidebar 
+				<Sidebar 
 					visible={ sidebarVisible } 
 					toggleSidebar={ toggleSidebar }
 					onUpdate={ updateParameters } />

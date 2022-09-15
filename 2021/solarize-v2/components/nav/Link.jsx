@@ -7,10 +7,10 @@ import Link from "next/link";
  * @param href - The link pointer 
  * @returns A link
  */
-const SidebarLink = ({ text, href }) => {
+const CoreLink = ({ text, href }) => {
 	return (
 		<Link href={ href }><p className="font-poppins mb-3 block text-2xl text-green-500 font-semibold">{ text }</p></Link>
 	)
 }
 
-export default SidebarLink;
+export default CoreLink;

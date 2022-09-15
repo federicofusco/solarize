@@ -1,12 +1,12 @@
 // Imports Hooks
 import { useEffect, useState } from "react";
 import useChart from "./../../hooks/chart";
-import useLogging from "../../hooks/logging";
+import useLogging from "./../../hooks/logging";
 
 // Imports components
-import MenuSidebar from "../nav/sidebar/MenuSidebar";
-import Navbar from "../nav/Navbar";
-import Chart from "../Chart";
+import Sidebar from "./../nav/Sidebar";
+import Navbar from "./../nav/Navbar";
+import Chart from "./../chart/Chart";
 import Head from "next/head";
 
 /**
@@ -66,7 +66,7 @@ const DataPage = ({ parameter, xAxis, yAxis, title, description, meta }) => {
 				{ meta }
 			</Head>
 
-			<MenuSidebar visible={ sidebarVisible } toggleSidebar={ toggleSidebar } />
+			<Sidebar visible={ sidebarVisible } toggleSidebar={ toggleSidebar } />
 
 			<Navbar toggleSidebar={ toggleSidebar } />
 

@@ -72,6 +72,7 @@ const useGeo = () => {
 					});
 
 				} else {
+
 					logInfo ({
 						code: "geo/fetched-user-coords",
 						message: "User\'s coordinates have already been cached",
@@ -80,6 +81,7 @@ const useGeo = () => {
 				}
 
 			} else {
+
 				logInfo ({
 					code: "geo/fetched-chart-coords",
 					message: "User has already specified specific coordinates",

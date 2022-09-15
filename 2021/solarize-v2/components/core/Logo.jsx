@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LogoSvg from "../public/logo.svg";
+import LogoSvg from "./../../public/logo.svg";
 
 /**
  * Displays a logo
