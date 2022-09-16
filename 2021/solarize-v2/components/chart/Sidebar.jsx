@@ -1,12 +1,5 @@
-// Imports hooks
-import { useState, useEffect } from "react";
-import useGeo from "../../hooks/geolocation";
-import useLogging from "../../hooks/logging";
-
 // Imports components
 import CoreSidebar from "./../nav/Sidebar";
-import DateRange from "./input/date/DateRange";
-import Button from "../core/Button";
 import dynamic from "next/dynamic";
 
 /**
