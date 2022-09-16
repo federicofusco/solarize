@@ -5,7 +5,7 @@ import useLogging from "../../hooks/logging";
 
 // Imports components
 import CoreSidebar from "./../nav/Sidebar";
-import DateRange from "./date/DateRange";
+import DateRange from "./input/date/DateRange";
 import Button from "../core/Button";
 import dynamic from "next/dynamic";
 
@@ -19,35 +19,16 @@ import dynamic from "next/dynamic";
  */
 const Sidebar = ({ visible, toggleSidebar, onUpdate }) => {
 
-	const Map = dynamic (() => import ( "./map/Map" ), {
+	const Map = dynamic (() => import ( "./input/Map" ), {
 		ssr: false 
 	});
 
-	const [position, setPosition] = useState ([45, 13]);
-	const startState = useState ( new Date () );
-	const endState = useState ( null );
-	
-	// const updatePosition = _position => setPosition ( _position );
-
 	return (
 		<CoreSidebar
-			title="Chart Data"
+			title="Chart"
 			visible={ visible }
 			toggleSidebar={ toggleSidebar }>
-			<>
-				<Map 
-					// position={ position }
-					// onDrag={ updatePosition }
-					// onDrag={( coords ) => {
-					// 	setChartCoords ( coords );
-					// 	setPosition ( transformFromLocalStorage ( coords ) );
-					/* }} */ /> 
-
-
-				<DateRange start={ startState } end={ endState } />
-
-				<Button text="Update" disabled={ !position || !startState[0] || !endState[0] || ( startState[0].getTime () >= endState[0].getTime () ) } onClick={() => onUpdate ( position, startDate, endDate ) } />
-			</>
+				<Map onUpdate={ onUpdate} /> 
 		</CoreSidebar>
 	)
 }

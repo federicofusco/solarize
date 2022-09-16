@@ -1,5 +1,5 @@
 // Imports components
-import Container from "./Container"; 
+import Container from "./map/Container"; 
 
 // Imports hooks
 import useGeo from "../../../hooks/geolocation";
@@ -13,12 +13,12 @@ import { useEffect, useState } from "react";
  * @param onDrag - The callback which is called when the user changes the map's position
  * @returns A map
  */
-const Map = () => {
+const Map = ({ onUpdate }) => {
 
 	const [position, setPosition] = useState ([45, 13]);
 	const { getPosition } = useGeo ();
 	const { logError } = useLogging ();
-	
+
 	// Fetches the user's selected position
 	useEffect (() => {
 		getPosition ()
@@ -34,10 +34,18 @@ const Map = () => {
 			});
 	}, []);
 
+	const _onUpdate = dates => {
+		onUpdate ({
+			startDate: dates.startDate,
+			endDate: dates.endDate,
+			position: position
+		});
+	}
+
 	return (
 		<>
 			<h2 className="font-poppins text-xl font-semibold mb-2">Position</h2>
-			<Container position={ position } />
+			<Container position={ position } onUpdate={ _onUpdate } />
 		</>
 	)
 }

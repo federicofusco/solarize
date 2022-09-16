@@ -3,14 +3,14 @@ import { Marker, Popup, useMap } from "react-leaflet";
 import { createRef } from "react";
 
 // Imports hooks
-import useGeo from "../../../hooks/geolocation";
+import useGeo from "../../../../hooks/geolocation";
 
 const SelectedPosition = ({ position }) => {
 
 	const { setChartCoords } = useGeo ();
 
-	const markerRef = createRef ( null );
 	const map = useMap ();
+	const markerRef = createRef ( null );
 	const eventHandlers = {
 
 		// Event is triggered when the map marker is moved to a new position
@@ -20,7 +20,8 @@ const SelectedPosition = ({ position }) => {
 			
 				// Gets the marker's new position
 				const coords = marker.getLatLng ();
-				map.flyTo ( coords );	
+				map.flyTo ( coords );
+
 				setChartCoords ({
 					coords: {
 						latitude: coords.lat,
