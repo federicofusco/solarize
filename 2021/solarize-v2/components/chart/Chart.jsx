@@ -1,9 +1,9 @@
 // Imports hooks
-import { useState, createRef } from "react";
+import { useState } from "react";
 
 
 // Imports components
-import ChartSidebar from "./nav/sidebar/ChartSidebar";
+import Sidebar from "./Sidebar";
 import "chart.js/auto";
 import { Chart as ReactChart } from "react-chartjs-2";
 
@@ -23,12 +23,17 @@ const Chart = ({ data, onUpdate, parameter }) => {
 	/**
 	 * Called when the user changes the chart's parameters
 	 */
-    const updateParameters = ( position, startDate, endDate ) => {
+    const updateParameters = ({ position, startDate, endDate }) => {
+
+		const convertToDateString = ( date ) => {
+			return `${ date.getFullYear () }${ String ( date.getMonth () + 1 ).padStart ( 2, "0" ) }${ String ( date.getDate () ).padStart ( 2, "0" ) }`
+		}
+
         onUpdate ( 
             position[1], 
             position[0],
-            `${ startDate["$d"].getFullYear () }${ String ( startDate["$d"].getMonth () + 1 ).padStart ( 2, "0" ) }${ String ( startDate["$d"].getDate () ).padStart ( 2, "0" ) }`,
-            `${ endDate["$d"].getFullYear () }${ String ( endDate["$d"].getMonth () + 1 ).padStart ( 2, "0" ) }${ String ( endDate["$d"].getDate () ).padStart ( 2, "0" ) }`,
+            convertToDateString	 ( startDate ),
+            convertToDateString ( endDate ),
             parameter
         );
     }
@@ -50,7 +55,7 @@ const Chart = ({ data, onUpdate, parameter }) => {
 				</div>
 
 
-				<ChartSidebar 
+				<Sidebar 
 					visible={ sidebarVisible } 
 					toggleSidebar={ toggleSidebar }
 					onUpdate={ updateParameters } />

@@ -1,5 +1,5 @@
 // Imports components
-import Description from "./../components/Description";
+import Description from "./../components/core/Description";
 import DataPage from "./../components/pages/DataPage";
 
 const Temperature = () => {

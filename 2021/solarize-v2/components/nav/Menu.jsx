@@ -1,6 +1,6 @@
 // Imports components
-import GenericSidebar from "./GenericSidebar";
-import SidebarLink from "./SidebarLink";
+import GenericSidebar from "./Sidebar";
+import SidebarLink from "./Link";
 
 /**
  * A sidebar containing nav links
@@ -9,7 +9,7 @@ import SidebarLink from "./SidebarLink";
  * @param toggleSidebar - The callback which is ran when the user attempts to close the menu 
  * @returns A sidebar
  */
-const MenuSidebar = ({ visible, toggleSidebar }) => {
+const Menu = ({ visible, toggleSidebar }) => {
 	return (
 		<GenericSidebar 
 			visible={ visible }
@@ -26,4 +26,4 @@ const MenuSidebar = ({ visible, toggleSidebar }) => {
 	)
 }
 
-export default MenuSidebar;
+export default Menu;

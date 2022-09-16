@@ -7,7 +7,7 @@
  * @param children - The menu's components
  * @returns A sidebar
  */
-const GenericSidebar = ({ visible, toggleSidebar, title, children }) => {
+const Sidebar = ({ visible, toggleSidebar, title, children }) => {
 
 	return (
 		<div className={`overflow-auto transition-all duration-150 z-50 w-screen sm:w-1/2 md:w-2/5 lg:w-1/3 h-screen border-r border-gray-300 fixed transform top-1/2 left-0 ${ visible ? "translate-x-0 -translate-y-1/2" : "-translate-x-full -translate-y-1/2" } bg-white px-8 pb-6`}>
@@ -29,4 +29,4 @@ const GenericSidebar = ({ visible, toggleSidebar, title, children }) => {
 
 }
 
-export default GenericSidebar;
+export default Sidebar;
