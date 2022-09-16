@@ -4,7 +4,7 @@ import useChart from "./../../hooks/chart";
 import useLogging from "./../../hooks/logging";
 
 // Imports components
-import Sidebar from "./../nav/Sidebar";
+import Menu from "./../nav/Menu";
 import Navbar from "./../nav/Navbar";
 import Chart from "./../chart/Chart";
 import Head from "next/head";
@@ -66,7 +66,7 @@ const DataPage = ({ parameter, xAxis, yAxis, title, description, meta }) => {
 				{ meta }
 			</Head>
 
-			<Sidebar visible={ sidebarVisible } toggleSidebar={ toggleSidebar } />
+			<Menu visible={ sidebarVisible } toggleSidebar={ toggleSidebar } />
 
 			<Navbar toggleSidebar={ toggleSidebar } />
 
