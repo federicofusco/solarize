@@ -22,7 +22,7 @@ import Head from "next/head";
  */
 const DataPage = ({ parameter, xAxis, yAxis, title, description, meta }) => {
 
-	const { fetchChartData } = useChart ();
+	const { fetchChartData, getStartDate, getEndDate } = useChart ();
 	const { logError } = useLogging ();
 
 	const [sidebarVisible, setSidebarVisibility] = useState ( false );
@@ -47,7 +47,7 @@ const DataPage = ({ parameter, xAxis, yAxis, title, description, meta }) => {
 
 	// Fetches data from the API
 	useEffect (() => {
-		fetchChartData ( setChartData, parameter, xAxis, yAxis )
+		fetchChartData ( setChartData, parameter, xAxis, yAxis, null, null, getStartDate ( true ), getEndDate ( true ) )
 			.catch ( error => {
 				logError ({
 					code: "index/fetch-failed",

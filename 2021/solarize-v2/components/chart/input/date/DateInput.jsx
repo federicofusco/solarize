@@ -11,7 +11,7 @@ const DateInput = ({ label, onUpdate, date }) => {
 					label={ label }
 					value={ date }
 					className="w-full"
-					onChange={ _date => onUpdate ( _date ) }
+					onChange={ _date => onUpdate ( _date ? _date["$d"] : _date ) }
 					renderInput={ params => <TextField { ...params } />}/>
 			</LocalizationProvider>
 		</div>
