@@ -24,18 +24,17 @@ const Chart = ({ data, onUpdate, parameter }) => {
 	 * Called when the user changes the chart's parameters
 	 */
     const updateParameters = ({ position, startDate, endDate }) => {
-
 		const convertToDateString = ( date ) => {
 			return `${ date.getFullYear () }${ String ( date.getMonth () + 1 ).padStart ( 2, "0" ) }${ String ( date.getDate () ).padStart ( 2, "0" ) }`
 		}
 
-        onUpdate ( 
-            position[1], 
-            position[0],
-            convertToDateString	 ( startDate ),
-            convertToDateString ( endDate ),
-            parameter
-        );
+		onUpdate ( 
+			position[1], 
+			position[0],
+			convertToDateString	 ( startDate ),
+			convertToDateString ( endDate ),
+			parameter
+		)
     }
 
 	/**

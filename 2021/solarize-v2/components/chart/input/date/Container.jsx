@@ -1,6 +1,6 @@
 // Imports components
 import DateRange from "./DateRange";
-import Button from "../../../core/Button";
+import UpdateButton from "./UpdateButton";
 
 // Imports hooks
 import { useState } from "react";
@@ -16,7 +16,7 @@ const Container = ({ onUpdate }) => {
 	return (
 		<>
 			<DateRange onUpdate={ setDates } />
-			<Button text="Update" disabled={ !dates.valid } onClick={() => onUpdate ( dates ) } />
+			<UpdateButton disabled={ !dates.valid } onClick={ onUpdate } params={ dates } />
 		</>
 	)
 }
