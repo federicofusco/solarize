@@ -35,7 +35,6 @@ const DataPage = ({ parameter, xAxis, yAxis, title, description, meta }) => {
 	const toggleSidebar = () => setSidebarVisibility ( !sidebarVisible );
 
 	const updateChart = ( longitude, latitude, start, end, parameter ) => {
-
 		fetchChartData ( setChartData, parameter, xAxis, yAxis, longitude, latitude, start, end )
 			.catch ( error => {
 				logError ({
@@ -44,7 +43,7 @@ const DataPage = ({ parameter, xAxis, yAxis, title, description, meta }) => {
 					data: error				
 				}, null, true );
 			});
-    }
+	}
 
 	// Fetches data from the API
 	useEffect (() => {
