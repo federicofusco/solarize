@@ -175,14 +175,26 @@ const useChart = () => {
 		});
 	}
 
-	const getStartDate = () => {
-		return startDate ? new Date ( startDate ) : null;
+	const convertToDateString = ( date ) => {
+		return `${ date.getFullYear () }${ String ( date.getMonth () + 1 ).padStart ( 2, "0" ) }${ String ( date.getDate () ).padStart ( 2, "0" ) }`
 	}
 
-	const getEndDate = () => {
-		return endDate ? new Date ( endDate ) : null;
+	const getStartDate = convert => {
+		return startDate ? 
+			convert ? 
+				convertToDateString ( new Date ( startDate ) ) :
+				new Date ( startDate ) : 
+			null;
 	}
-	
+
+	const getEndDate = convert => {
+		return endDate ?
+			convert ?
+				convertToDateString ( new Date ( endDate ) ) :
+				new Date ( endDate ) :
+			null;
+	}
+
 	return {
 		fetchChartData,
 		getStartDate,
