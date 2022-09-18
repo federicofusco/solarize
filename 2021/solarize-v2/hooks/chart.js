@@ -1,6 +1,7 @@
 // Imports hooks
 import useApi from "./api";
 import useLogging from "./logging";
+import useLocalStorage from "./localStorage";
 
 /**
  * A hook to handle chart data such as formatting and processing data
@@ -10,6 +11,8 @@ const useChart = () => {
 
 	const { fetchApiData } = useApi ();
 	const { logError } = useLogging ();
+	const [startDate, setStartDate] = useLocalStorage ( "startDate", null );
+	const [endDate, setEndDate] = useLocalStorage ( "endDate", null );
 
 	/**
 	 * Fetches data of a specified parameter from the API and processes it to be placed 
@@ -172,8 +175,20 @@ const useChart = () => {
 		});
 	}
 
+	const getStartDate = () => {
+		return new Date ( startDate );
+	}
+
+	const getEndDate = () => {
+		return new Date ( endDate );
+	}
+
 	return {
-		fetchChartData
+		fetchChartData,
+		getStartDate,
+		setStartDate,
+		getEndDate,
+		setEndDate
 	}
 
 }
