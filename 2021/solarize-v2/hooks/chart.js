@@ -176,13 +176,13 @@ const useChart = () => {
 	}
 
 	const getStartDate = () => {
-		return new Date ( startDate );
+		return startDate ? new Date ( startDate ) : null;
 	}
 
 	const getEndDate = () => {
-		return new Date ( endDate );
+		return endDate ? new Date ( endDate ) : null;
 	}
-
+	
 	return {
 		fetchChartData,
 		getStartDate,
